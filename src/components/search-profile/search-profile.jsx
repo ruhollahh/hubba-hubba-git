@@ -1,9 +1,9 @@
 import React from "react";
-import { VStack } from "@chakra-ui/react";
-import { SearchForm } from "../search-form";
-import { SearchStatus } from "../search-status";
-import { useProfile } from "../../data/get-user.js";
-import { useRouter } from "next/router.js";
+import { Flex } from "@chakra-ui/react";
+import { SearchForm } from "./search-form";
+import { SearchStatus } from "./search-status";
+import { useProfile } from "../../data/get-user";
+import { useRouter } from "next/router";
 
 export const SearchProfile = () => {
 	const router = useRouter();
@@ -17,11 +17,11 @@ export const SearchProfile = () => {
 	const status = isError ? "error" : fetchStatus;
 
 	return (
-		<VStack gap="8">
+		<Flex direction="column" gap="8">
 			<SearchForm
 				onSubmit={(searchedUsername) => setUsername(searchedUsername)}
 			/>
 			<SearchStatus status={status} />
-		</VStack>
+		</Flex>
 	);
 };

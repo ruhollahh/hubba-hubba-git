@@ -1,12 +1,19 @@
 import React from "react";
-import { Heading, VStack } from "@chakra-ui/react";
-import { SearchProfile } from "../components/search-profile/search-profile.jsx";
+import { Flex, Heading } from "@chakra-ui/react";
+import { SearchProfile } from "../components/search-profile";
 
 export default function HomePage() {
 	return (
-		<VStack gap="8" maxW="container.md" mx="auto" h="full" p="10">
-			<Heading fontSize="2xl">جستجوی پروفایل گیت‌هاب</Heading>
+		<Flex
+			direction="column"
+			align="center"
+			gap="8"
+			maxW="container.lg"
+			mx="auto"
+			p="10"
+		>
+			<Heading fontSize={["xl", "2xl"]}>جستجوی پروفایل گیت‌هاب</Heading>
 			<SearchProfile />
-		</VStack>
+		</Flex>
 	);
 }

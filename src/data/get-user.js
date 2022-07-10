@@ -1,8 +1,9 @@
 import { useQuery } from "react-query";
-import { client } from "../lib/client.js";
+import { fetcher } from "../lib/fetcher";
 
-const getUser = async (username) => {
-	return await client(`users/${encodeURIComponent(username)}`);
+export const getUser = async (username) => {
+	const { data } = await fetcher(`users/${encodeURIComponent(username)}`);
+	return data;
 };
 
 export const useProfile = (username, customOptions = {}) => {

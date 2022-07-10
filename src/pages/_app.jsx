@@ -1,7 +1,7 @@
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { ChakraProvider } from "@chakra-ui/react";
-import { theme } from "../lib/chakra-ui.js";
-import { Fonts } from "../styles/fonts.jsx";
+import { theme } from "../lib/chakra-ui";
+import { Fonts } from "../styles/fonts";
 import React from "react";
 
 function MyApp({ Component, pageProps }) {

@@ -1,16 +1,20 @@
-import { Flex, Heading, Spinner, Text } from "@chakra-ui/react";
-import { useRouter } from "next/router.js";
-import { SearchStatus } from "../../components/search-status/search-status.jsx";
-import { useProfile } from "../../data/get-user.js";
+import { Flex, Spinner, Text } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import { useProfile } from "../../data/get-user";
+import { RepoList } from "../../components/repo-list";
+import { ProfileInfo } from "../../components/profile-info";
+import { getRepos } from "../../data/get-repos";
+import { getUser } from "../../data/get-user";
+import { dehydrate, QueryClient } from "react-query";
 
 export default function ProfilePage() {
 	const router = useRouter();
 	const { username } = router.query;
-	const { data, isError, isLoading } = useProfile(username);
+	const { data: profile, isError, isLoading } = useProfile(username);
 
 	if (isLoading) {
 		return (
-			<Flex justify="center" align="center" h="full">
+			<Flex justify="center" align="center" h="100vh" w="full">
 				<Spinner size="xl" />
 			</Flex>
 		);
@@ -24,5 +28,36 @@ export default function ProfilePage() {
 		);
 	}
 
-	return <pre>{JSON.stringify(data, null, 2)}</pre>;
+	return (
+		<Flex
+			dir="ltr"
+			lang="en"
+			align="flex-start"
+			maxW="container.lg"
+			mx="auto"
+			p="10"
+			gap="20"
+		>
+			<ProfileInfo profile={profile} />
+			<RepoList />
+		</Flex>
+	);
+}
+
+export async function getServerSideProps({ query }) {
+	let { username, page = "1" } = query;
+
+	const queryClient = new QueryClient();
+	await queryClient.prefetchQuery(["profile", username], () =>
+		getUser(username)
+	);
+	await queryClient.prefetchQuery(["repos", username, page], () =>
+		getRepos(username, page)
+	);
+
+	return {
+		props: {
+			dehydratedState: dehydrate(queryClient),
+		},
+	};
 }
