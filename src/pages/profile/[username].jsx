@@ -1,7 +1,7 @@
 import { Flex, Spinner, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useProfile } from "../../data/get-user";
-import { RepoList } from "../../components/repo-list";
+import { RepoGrid } from "../../components/repo-grid";
 import { ProfileInfo } from "../../components/profile-info";
 import { getRepos } from "../../data/get-repos";
 import { getUser } from "../../data/get-user";
@@ -24,14 +24,14 @@ export default function ProfilePage() {
 		<Flex
 			dir="ltr"
 			lang="en"
-			align="flex-start"
+			direction={["column", null, "row"]}
 			maxW="container.lg"
 			mx="auto"
 			p="10"
 			gap="20"
 		>
 			<ProfileInfo profile={profile} />
-			<RepoList />
+			<RepoGrid />
 		</Flex>
 	);
 }

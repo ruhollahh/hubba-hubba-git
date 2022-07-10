@@ -6,14 +6,13 @@ import {
 	Grid,
 	GridItem,
 	Link,
-	Spinner,
 	Text,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { useRepos } from "../../data/get-repos";
 
-export const RepoList = () => {
+export const RepoGrid = () => {
 	const router = useRouter();
 	let { username, page = "1" } = router.query;
 
@@ -38,11 +37,10 @@ export const RepoList = () => {
 
 	return (
 		<Flex direction="column" grow={1} gap="8" justify="space-between">
-			<Grid as="ol" templateColumns="1fr 1fr" gap={6}>
+			<Grid templateColumns={["1fr", "1fr 1fr"]} gap={6}>
 				{data.repos.map((repo) => (
 					<GridItem
 						key={repo.id}
-						as="li"
 						p="5"
 						border="1px"
 						borderColor="gray.200"
