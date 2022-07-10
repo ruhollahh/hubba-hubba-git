@@ -17,15 +17,7 @@ export const RepoList = () => {
 	const router = useRouter();
 	let { username, page = "1" } = router.query;
 
-	const { data, isLoading, error } = useRepos(username, page);
-
-	if (isLoading) {
-		return (
-			<Flex justify="center" grow={1} align="center" minH="full">
-				<Spinner size="xl" />
-			</Flex>
-		);
-	}
+	const { data, error } = useRepos(username, page);
 
 	if (error) {
 		return (
@@ -35,7 +27,7 @@ export const RepoList = () => {
 					There was an error processing your request
 				</Alert>
 				<Text color="red.600" fontSize="xl">
-					{error}
+					{error.message}
 				</Text>
 			</Flex>
 		);

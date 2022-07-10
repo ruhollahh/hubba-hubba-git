@@ -10,15 +10,7 @@ import { dehydrate, QueryClient } from "react-query";
 export default function ProfilePage() {
 	const router = useRouter();
 	const { username } = router.query;
-	const { data: profile, isError, isLoading } = useProfile(username);
-
-	if (isLoading) {
-		return (
-			<Flex justify="center" align="center" h="100vh" w="full">
-				<Spinner size="xl" />
-			</Flex>
-		);
-	}
+	const { data: profile, isError } = useProfile(username);
 
 	if (isError) {
 		return (
