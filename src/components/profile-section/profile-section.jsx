@@ -2,7 +2,7 @@ import { Box, Flex, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import { FiLink, FiMapPin, FiUserPlus } from "react-icons/fi";
 
-export const ProfileInfo = ({ profile }) => {
+export const ProfileSection = ({ profile }) => {
 	return (
 		<Flex justify="center">
 			<Flex direction="column" gap="5">

@@ -1,11 +1,11 @@
-import { Flex, Spinner, Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useProfile } from "../../data/get-user";
-import { RepoGrid } from "../../components/repo-grid";
-import { ProfileInfo } from "../../components/profile-info";
+import { ProfileSection } from "../../components/profile-section";
 import { getRepos } from "../../data/get-repos";
 import { getUser } from "../../data/get-user";
 import { dehydrate, QueryClient } from "react-query";
+import { RepoSection } from "../../components/repo-section";
 
 export default function ProfilePage() {
 	const router = useRouter();
@@ -30,8 +30,8 @@ export default function ProfilePage() {
 			p="10"
 			gap="20"
 		>
-			<ProfileInfo profile={profile} />
-			<RepoGrid />
+			<ProfileSection profile={profile} />
+			<RepoSection />
 		</Flex>
 	);
 }
