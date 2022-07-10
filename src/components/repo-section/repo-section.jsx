@@ -10,8 +10,6 @@ export const RepoSection = () => {
 	const { data, error } = useRepos(username, page);
 	const { repos, pagination } = data;
 
-	console.log(data);
-
 	if (error) {
 		return (
 			<Flex direction="column" align="flex-start" gap="3">
