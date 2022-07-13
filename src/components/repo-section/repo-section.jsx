@@ -27,7 +27,9 @@ export const RepoSection = () => {
 	return (
 		<Flex direction="column" grow={1} gap="8" justify="space-between">
 			<RepoGrid repos={repos} />
-			<Pagination pagination={pagination} page={page} username={username} />
+			{pagination && (
+				<Pagination pagination={pagination} page={page} username={username} />
+			)}
 		</Flex>
 	);
 };

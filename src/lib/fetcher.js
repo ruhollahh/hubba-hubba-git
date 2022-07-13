@@ -20,7 +20,7 @@ export const fetcher = async (
 		const data = await response.json();
 		if (response.ok) {
 			const links = response.headers.get("link");
-			return { data, pagination: links ? parseLinks(links) : undefined };
+			return { data, pagination: links ? parseLinks(links) : null };
 		} else {
 			return Promise.reject(data);
 		}
